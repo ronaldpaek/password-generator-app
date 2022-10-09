@@ -1,7 +1,7 @@
 import { createContext, useState, useContext } from 'react';
 
 export const PasswordContextProvider = ({ children }) => {
-	const [password, setPassword] = useState('P4$5W0rD!');
+	const [password, setPassword] = useState('');
 
 	return (
 		<PasswordContext.Provider value={{ password, setPassword }}>

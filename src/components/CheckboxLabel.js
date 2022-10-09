@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FormControlLabel, Checkbox } from '@mui/material';
 
 const CheckboxLabel = ({ label, handleToggleOption }) => {
-	const [checked, setChecked] = useState(true);
+	const [checked, setChecked] = useState(false);
 
 	return (
 		<FormControlLabel

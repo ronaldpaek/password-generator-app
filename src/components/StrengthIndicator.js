@@ -12,7 +12,7 @@ const StrengthIndicator = ({ strength, strengthLevel, value }) => {
 				bgcolor: theme.palette.grey.veryDark,
 				px: { mobile: 2, tablet: 4 },
 				py: { mobile: 2, tablet: 3 },
-				display: Math.floor(value / 6) === strengthLevel ? 'flex' : 'none'
+				display: Math.floor(value / 5) === strengthLevel ? 'flex' : 'none'
 			})}
 		>
 			<Typography

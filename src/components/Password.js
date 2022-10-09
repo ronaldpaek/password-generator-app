@@ -1,10 +1,22 @@
+import { useState } from 'react';
 import { usePasswordContext } from '../contexts/PasswordContextProvider';
 import { Stack, Typography, SvgIcon } from '@mui/material';
 import { MdOutlineFileCopy } from 'react-icons/md';
 
 const Password = () => {
-  const { password } = usePasswordContext();
-  
+	const { password } = usePasswordContext();
+	const [clicked, setClicked] = useState(false);
+
+	const handleClick = setClicked => {
+		if (password) {
+			navigator.clipboard.writeText(password);
+			setClicked(clicked => !clicked);
+			setTimeout(() => {
+				setClicked(clicked => !clicked);
+			}, 1000);
+		}
+	};
+
 	return (
 		<Stack>
 			<Typography
@@ -31,34 +43,56 @@ const Password = () => {
 				bgcolor={theme => theme.palette.grey.dark}
 				sx={theme => ({
 					'&:hover ': {
-						'.css-1r28dsc-MuiSvgIcon-root': {
-							color: theme.palette.white.main
+						cursor: password === '' ? 'default' : 'pointer',
+						'& .css-1r28dsc-MuiSvgIcon-root': {
+							color:
+								password === ''
+									? theme.palette.red.main
+									: theme.palette.white.main
 						}
 					}
 				})}
+				onClick={() => handleClick(setClicked)}
 			>
 				<Typography
 					component='h2'
 					variant='h1'
 					sx={theme => ({
+						cursor: 'cursor',
 						color: theme.palette.white.main,
-						opacity: '0.25',
-						mixBlendMode: 'normal',
-						cursor: 'default',
+						...(password === '' && {
+							opacity: '0.25',
+							mixBlendMode: 'normal'
+						}),
 						[theme.breakpoints.down('tablet')]: {
 							...theme.typography.h2
 						}
 					})}
 				>
-					{password}
+					{password === '' ? 'P4$5W0rD!' : password}
 				</Typography>
-				<SvgIcon
-					component={MdOutlineFileCopy}
-					sx={{
-						color: 'primary.main',
-						fontSize: { mobile: 20, tablet: 24 }
-					}}
-				/>
+				<Stack direction='row'>
+					<Typography
+						variant='body1'
+						color='primary.main'
+						mr={2}
+						sx={theme => ({
+							display: clicked ? 'block' : 'none',
+							[theme.breakpoints.down('tablet')]: {
+								...theme.typography.body2
+							}
+						})}
+					>
+						COPIED
+					</Typography>
+					<SvgIcon
+						component={MdOutlineFileCopy}
+						sx={{
+							color: 'primary.main',
+							fontSize: { mobile: 20, tablet: 24 }
+						}}
+					/>
+				</Stack>
 			</Stack>
 		</Stack>
 	);

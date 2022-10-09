@@ -39,7 +39,7 @@ const CharacterOptions = ({ value, handleChange, handleToggleOption }) => {
 			<Slider
 				value={value}
 				min={0}
-				max={20}
+				max={18}
 				onChange={handleChange}
 				sx={theme => ({
 					'& .MuiSlider-thumb': {

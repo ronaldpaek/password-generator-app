@@ -71,4 +71,21 @@ export const generateRandomNumber = size => {
 	return Math.floor(Math.random() * size);
 };
 
+export const getPasswordStrength = (categories, characters) => {
+  if (categories.includes('numbers') && categories.includes('symbols') && categories.includes('lowercase' && categories.includes('uppercase'))) {
+    if (characters.length < 6) {
+      return 0;
+    } else if (characters.length < 9) {
+      return 1;
+    } else if (characters.length < 11) {
+      return 2;
+    } else {
+      return 3;
+    }
+  } else if (categories.includes('numbers') && categories.includes('lowercase' && categories.includes('uppercase'))) {
+    
+  }
+
+};
+
 export const strengths = ['TOO WEAK!', 'WEAK', 'MEDIUM', 'STRONG'];
