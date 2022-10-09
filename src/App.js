@@ -2,6 +2,7 @@ import { CssBaseline, Stack } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { Password, PasswordOptions } from './components';
+import { PasswordContextProvider } from './contexts/PasswordContextProvider';
 
 const theme = createTheme({
 	breakpoints: {
@@ -64,25 +65,27 @@ const theme = createTheme({
 const App = () => {
 	return (
 		<ThemeProvider theme={theme}>
-			<CssBaseline />
-			<Stack
-				sx={{
-					background: 'linear-gradient(180deg, #14131B 0%, #08070B 100%)',
-					minHeight: '100vh',
-					p: { mobile: 2, tablet: 4 }
-				}}
-			>
+			<PasswordContextProvider>
+				<CssBaseline />
 				<Stack
-					component='main'
-					spacing={{ mobile: 2, tablet: 3 }}
-					m='auto'
-					width={1}
-					maxWidth={540}
+					sx={{
+						background: 'linear-gradient(180deg, #14131B 0%, #08070B 100%)',
+						minHeight: '100vh',
+						p: { mobile: 2, tablet: 4 }
+					}}
 				>
-					<Password />
-					<PasswordOptions />
+					<Stack
+						component='main'
+						spacing={{ mobile: 2, tablet: 3 }}
+						m='auto'
+						width={1}
+						maxWidth={540}
+					>
+						<Password />
+						<PasswordOptions />
+					</Stack>
 				</Stack>
-			</Stack>
+			</PasswordContextProvider>
 		</ThemeProvider>
 	);
 };

@@ -1,14 +1,24 @@
+import { useState } from 'react';
 import { Stack, Typography, Slider, FormGroup } from '@mui/material';
 
 import { CheckboxLabel } from './';
 
 const CharacterOptions = () => {
 	const labels = [
-		'Include Uppercase Letters',
-		'Include Lowercase Letters',
-		'Include Numbers',
-		'Include Symbols'
+		'Include Uppercase Letters', // 65-90
+		'Include Lowercase Letters', // 97-122
+		'Include Numbers', //0-9
+		'Include Symbols' //!@#$%^&*
 	];
+
+	const [options, setOptions] = useState([
+		'Uppercase',
+		'Lowercase',
+		'Numbers',
+		'Symbols'
+	]);
+
+	const handleToggleOption = () => {};
 
 	return (
 		<Stack>
@@ -18,8 +28,7 @@ const CharacterOptions = () => {
 					sx={theme => ({
 						color: theme.palette.white.main,
 						[theme.breakpoints.down('tablet')]: {
-							fontSize: 16,
-							lineHeight: '21px'
+							...theme.typography.body2
 						}
 					})}
 				>
@@ -40,13 +49,20 @@ const CharacterOptions = () => {
 			<Slider
 				sx={{
 					'& .MuiSlider-thumb': {
-						color: theme => theme.palette.white.main
+						color: theme => theme.palette.white.main,
+						'&:hover': {
+							color: theme => theme.palette.grey.veryDark
+						}
 					}
 				}}
 			/>
 			<FormGroup>
 				{labels.map((label, i) => (
-					<CheckboxLabel key={i} label={label} />
+					<CheckboxLabel
+						key={i}
+						label={label}
+						handleToggleOption={handleToggleOption}
+					/>
 				))}
 			</FormGroup>
 		</Stack>

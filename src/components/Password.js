@@ -1,8 +1,9 @@
+import { usePasswordContext } from '../contexts/PasswordContextProvider';
 import { Stack, Typography, SvgIcon } from '@mui/material';
-
 import { MdOutlineFileCopy } from 'react-icons/md';
 
 const Password = () => {
+	const { password, setPassword } = usePasswordContext();
 	return (
 		<Stack>
 			<Typography
@@ -13,8 +14,7 @@ const Password = () => {
 				mb={4}
 				sx={theme => ({
 					[theme.breakpoints.down('tablet')]: {
-						fontSize: 16,
-						lineHeight: '21px',
+						...theme.typography.body2,
 						mb: 2
 					}
 				})}
@@ -28,18 +28,26 @@ const Password = () => {
 				px={{ mobile: 2, tablet: 4 }}
 				py={2}
 				bgcolor={theme => theme.palette.grey.dark}
+				sx={{
+					'&:hover .css-1r28dsc-MuiSvgIcon-root': {
+						color: theme => theme.palette.white.main
+					}
+				}}
 			>
 				<Typography
 					component='h2'
 					variant='h1'
 					sx={theme => ({
 						color: theme.palette.white.main,
+						opacity: '0.25',
+						mixBlendMode: 'normal',
+						cursor: 'default',
 						[theme.breakpoints.down('tablet')]: {
 							...theme.typography.h2
 						}
 					})}
 				>
-					PTx1f5DaFX
+					{password}
 				</Typography>
 				<SvgIcon
 					component={MdOutlineFileCopy}

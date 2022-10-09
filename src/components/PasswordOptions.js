@@ -24,11 +24,17 @@ const PasswordOptions = () => {
 					...theme.typography.body1,
 					py: 2.5,
 					bgcolor: 'primary.main',
+					'&:hover': {
+						bgcolor: theme.palette.grey.dark,
+						border: `2px solid ${theme.palette.primary.main}`,
+						color: 'primary.main'
+					},
 					[theme.breakpoints.down('tablet')]: {
 						...theme.typography.body2,
 						py: 2
 					}
 				})}
+				onClick={() => {}}
 			>
 				Generate
 				<SvgIcon
