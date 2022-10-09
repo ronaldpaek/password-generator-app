@@ -1,8 +1,19 @@
+import { Stack, ButtonBase } from '@mui/material';
+
+import { CharacterOptions, StrengthIndicator } from './';
 
 const PasswordOptions = () => {
-  return (
-    <div>PasswordOptions</div>
-  )
-}
+	const strengths = ['TOO WEAK!', 'WEAK', 'MEDIUM', 'STRONG'];
 
-export default PasswordOptions
+	return (
+		<Stack p={4}>
+			<CharacterOptions />
+			{strengths.map((strength, i) => (
+				<StrengthIndicator key={i} strength={strength} strengthLevel={i} />
+      ))}
+      <ButtonBase>Generate</ButtonBase>
+		</Stack>
+	);
+};
+
+export default PasswordOptions;
