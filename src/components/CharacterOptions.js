@@ -12,11 +12,38 @@ const CharacterOptions = () => {
 
 	return (
 		<Stack>
-			<Stack direction='row'>
-				<Typography>Character Length</Typography>
-				<Typography>10</Typography>
+			<Stack direction='row' justifyContent='space-between' alignItems='center'>
+				<Typography
+					variant='body1'
+					sx={theme => ({
+						color: theme.palette.white.main,
+						[theme.breakpoints.down('tablet')]: {
+							fontSize: 16,
+							lineHeight: '21px'
+						}
+					})}
+				>
+					Character Length
+				</Typography>
+				<Typography
+					variant='h1'
+					sx={theme => ({
+						color: 'primary.main',
+						[theme.breakpoints.down('tablet')]: {
+							...theme.typography.h2
+						}
+					})}
+				>
+					10
+				</Typography>
 			</Stack>
-			<Slider />
+			<Slider
+				sx={{
+					'& .MuiSlider-thumb': {
+						color: theme => theme.palette.white.main
+					}
+				}}
+			/>
 			<FormGroup>
 				{labels.map((label, i) => (
 					<CheckboxLabel key={i} label={label} />

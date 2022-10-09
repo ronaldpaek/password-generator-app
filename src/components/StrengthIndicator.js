@@ -4,10 +4,42 @@ import { Bar } from './';
 
 const StrengthIndicator = ({ strength, strengthLevel }) => {
 	return (
-		<Stack direction='row' justifyContent='space-between'>
-			<Typography>STRENGTH</Typography>
+		<Stack
+			direction='row'
+			justifyContent='space-between'
+			sx={theme => ({
+				bgcolor: theme.palette.grey.veryDark,
+				px: { mobile: 2, tablet: 4 },
+				py: { mobile: 2, tablet: 3 }
+			})}
+		>
+			<Typography
+				variant='body1'
+				sx={theme => ({
+					color: theme.palette.grey.main,
+					[theme.breakpoints.down('tablet')]: {
+						...theme.typography.body2
+					}
+				})}
+			>
+				STRENGTH
+			</Typography>
 			<Stack direction='row'>
-				<Typography mr={1}>{strength}</Typography>
+				<Typography
+					variant='h2'
+					mr={1}
+					sx={theme => ({
+						color: theme.palette.white.main,
+						[theme.breakpoints.down('tablet')]: {
+							...theme.typography.body1
+						},
+						'@media (max-width: 360px)': {
+							display: 'none'
+						}
+					})}
+				>
+					{strength}
+				</Typography>
 				<Stack direction='row' spacing={1}>
 					{Array.from({ length: 4 }).map((_, i) => (
 						<Bar key={i} strengthLevel={strengthLevel} i={i} />
