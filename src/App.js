@@ -25,9 +25,6 @@ const theme = createTheme({
 		yellow: {
 			main: '#F8CD65'
 		},
-		darkGrey: {
-			main: '#24232C'
-		},
 		grey: {
 			main: '#817D92',
 			dark: '#24232C',

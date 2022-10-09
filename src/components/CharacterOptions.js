@@ -1,30 +1,14 @@
-import { useState } from 'react';
 import { Stack, Typography, Slider, FormGroup } from '@mui/material';
 
 import { CheckboxLabel } from './';
 
-const CharacterOptions = ({ value, handleChange }) => {
+const CharacterOptions = ({ value, handleChange, handleToggleOption }) => {
 	const labels = [
-		'Include Uppercase Letters', // 65-90
-		'Include Lowercase Letters', // 97-122
-		'Include Numbers', //0-9
-		'Include Symbols' //!@#$%^&*
+		'Include Uppercase Letters',
+		'Include Lowercase Letters',
+		'Include Numbers',
+		'Include Symbols'
 	];
-
-	const [options, setOptions] = useState([
-		'Uppercase',
-		'Lowercase',
-		'Numbers',
-		'Symbols'
-	]);
-
-	const handleToggleOption = (option, checked) => {
-		if (checked) {
-			setOptions(options.filter(o => o !== option));
-		} else {
-			setOptions(prevOptions => [...prevOptions, option]);
-		}
-	};
 
 	return (
 		<Stack spacing={2}>
@@ -57,14 +41,19 @@ const CharacterOptions = ({ value, handleChange }) => {
 				min={0}
 				max={20}
 				onChange={handleChange}
-				sx={{
+				sx={theme => ({
 					'& .MuiSlider-thumb': {
-						color: theme => theme.palette.white.main,
+						color: theme.palette.white.main,
 						'&:hover': {
-							color: theme => theme.palette.grey.veryDark
+							color: theme.palette.grey.veryDark
 						}
+					},
+					'& .css-14pt78w-MuiSlider-rail': {
+						bgcolor: theme.palette.grey.veryDark,
+						height: 8,
+						opacity: 1
 					}
-				}}
+				})}
 			/>
 			<FormGroup>
 				{labels.map((label, i) => (

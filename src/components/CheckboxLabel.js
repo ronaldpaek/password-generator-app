@@ -3,6 +3,7 @@ import { FormControlLabel, Checkbox } from '@mui/material';
 
 const CheckboxLabel = ({ label, handleToggleOption }) => {
 	const [checked, setChecked] = useState(true);
+
 	return (
 		<FormControlLabel
 			control={

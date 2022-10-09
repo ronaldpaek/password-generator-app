@@ -3,7 +3,8 @@ import { Stack, Typography, SvgIcon } from '@mui/material';
 import { MdOutlineFileCopy } from 'react-icons/md';
 
 const Password = () => {
-	const { password, setPassword } = usePasswordContext();
+  const { password } = usePasswordContext();
+  
 	return (
 		<Stack>
 			<Typography
@@ -28,11 +29,13 @@ const Password = () => {
 				px={{ mobile: 2, tablet: 4 }}
 				py={2}
 				bgcolor={theme => theme.palette.grey.dark}
-				sx={{
-					'&:hover .css-1r28dsc-MuiSvgIcon-root': {
-						color: theme => theme.palette.white.main
+				sx={theme => ({
+					'&:hover ': {
+						'.css-1r28dsc-MuiSvgIcon-root': {
+							color: theme.palette.white.main
+						}
 					}
-				}}
+				})}
 			>
 				<Typography
 					component='h2'
