@@ -61,11 +61,11 @@ const PasswordOptions = () => {
 				/>
 			))}
 			<ButtonBase
-				disabled={value === 0}
+				disabled={value === 0 || options.length === 0}
 				sx={theme => ({
 					...theme.typography.body1,
 					py: 2.5,
-					bgcolor: value === 0 ? theme.palette.red.main : 'primary.main',
+					bgcolor: value === 0 || options.length === 0 ? theme.palette.red.main : 'primary.main',
 					'&:hover': {
 						bgcolor: theme.palette.grey.dark,
 						border: `2px solid ${theme.palette.primary.main}`,
