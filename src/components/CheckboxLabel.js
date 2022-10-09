@@ -11,7 +11,7 @@ const CheckboxLabel = ({ label, handleToggleOption }) => {
 					onChange={() => {
 						setChecked(checked => !checked);
 						console.log(checked);
-						handleToggleOption(label.split(' ')[1]);
+						handleToggleOption(label.split(' ')[1], checked);
 					}}
 				/>
 			}

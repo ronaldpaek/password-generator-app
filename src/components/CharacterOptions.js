@@ -3,7 +3,7 @@ import { Stack, Typography, Slider, FormGroup } from '@mui/material';
 
 import { CheckboxLabel } from './';
 
-const CharacterOptions = () => {
+const CharacterOptions = ({ value, handleChange }) => {
 	const labels = [
 		'Include Uppercase Letters', // 65-90
 		'Include Lowercase Letters', // 97-122
@@ -18,10 +18,16 @@ const CharacterOptions = () => {
 		'Symbols'
 	]);
 
-	const handleToggleOption = () => {};
+	const handleToggleOption = (option, checked) => {
+		if (checked) {
+			setOptions(options.filter(o => o !== option));
+		} else {
+			setOptions(prevOptions => [...prevOptions, option]);
+		}
+	};
 
 	return (
-		<Stack>
+		<Stack spacing={2}>
 			<Stack direction='row' justifyContent='space-between' alignItems='center'>
 				<Typography
 					variant='body1'
@@ -43,10 +49,14 @@ const CharacterOptions = () => {
 						}
 					})}
 				>
-					10
+					{value}
 				</Typography>
 			</Stack>
 			<Slider
+				value={value}
+				min={0}
+				max={20}
+				onChange={handleChange}
 				sx={{
 					'& .MuiSlider-thumb': {
 						color: theme => theme.palette.white.main,

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Stack, ButtonBase, SvgIcon } from '@mui/material';
 import { MdArrowForward } from 'react-icons/md';
 
@@ -5,6 +6,12 @@ import { CharacterOptions, StrengthIndicator } from './';
 
 const PasswordOptions = () => {
 	const strengths = ['TOO WEAK!', 'WEAK', 'MEDIUM', 'STRONG'];
+
+	const [value, setValue] = useState(10);
+
+	const handleChange = (_, newValue) => {
+		setValue(newValue);
+	};
 
 	return (
 		<Stack
@@ -15,9 +22,9 @@ const PasswordOptions = () => {
 				pt: { mobile: 2, tablet: 3 }
 			}}
 		>
-			<CharacterOptions />
+			<CharacterOptions value={value} handleChange={handleChange} />
 			{strengths.map((strength, i) => (
-				<StrengthIndicator key={i} strength={strength} strengthLevel={i} />
+				<StrengthIndicator key={i} strength={strength} strengthLevel={i} value={value} />
 			))}
 			<ButtonBase
 				sx={theme => ({

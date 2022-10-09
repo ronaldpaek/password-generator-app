@@ -2,15 +2,17 @@ import { Stack, Typography } from '@mui/material';
 
 import { Bar } from './';
 
-const StrengthIndicator = ({ strength, strengthLevel }) => {
+const StrengthIndicator = ({ strength, strengthLevel, value }) => {
 	return (
 		<Stack
 			direction='row'
 			justifyContent='space-between'
+			my={4}
 			sx={theme => ({
 				bgcolor: theme.palette.grey.veryDark,
 				px: { mobile: 2, tablet: 4 },
-				py: { mobile: 2, tablet: 3 }
+				py: { mobile: 2, tablet: 3 },
+				display: Math.floor(value / 6) === strengthLevel ? 'flex' : 'none'
 			})}
 		>
 			<Typography
