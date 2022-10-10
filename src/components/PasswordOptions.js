@@ -3,18 +3,32 @@ import { Stack, ButtonBase, SvgIcon } from '@mui/material';
 import { MdArrowForward } from 'react-icons/md';
 
 import { CharacterOptions, StrengthIndicator } from './';
-import { characters, generateRandomNumber, strengths } from '../constants';
+import {
+	characters,
+	generateRandomNumber,
+	strengths,
+	getPasswordStrength
+} from '../constants';
 import { usePasswordContext } from '../contexts/PasswordContextProvider';
 
 const PasswordOptions = () => {
 	const { setPassword } = usePasswordContext();
 	const [value, setValue] = useState(0);
 	const [options, setOptions] = useState([]);
+	const [strengthLevel, setStrengthLevel] = useState(0);
 
-	// const [strengthLevel, setStrengthLevel] = useState()
+	const getStrengthLevel = () => {
+		if (!options.length || value === 0) {
+			setStrengthLevel(0);
+			return;
+		}
+		const lowerCased = options.map(option => option.toLowerCase());
+		setStrengthLevel(getPasswordStrength(lowerCased, value));
+	};
 
 	const handleChange = (_, newValue) => {
 		setValue(newValue);
+		getStrengthLevel();
 	};
 
 	const handleToggleOption = (option, checked) => {
@@ -23,9 +37,15 @@ const PasswordOptions = () => {
 		} else {
 			setOptions(prevOptions => [...prevOptions, option]);
 		}
+		getStrengthLevel();
 	};
 
 	const handleGeneratePassword = () => {
+		if (!options.length || value === 0) {
+			setPassword('');
+			return;
+		}
+
 		let newPassword = '';
 		for (let i = 0; i < value; i++) {
 			let randomIdx = generateRandomNumber(options.length);
@@ -33,7 +53,6 @@ const PasswordOptions = () => {
 			randomIdx = generateRandomNumber(characters[key].length);
 			newPassword += characters[key][randomIdx];
 		}
-		const set = new Set(options);
 
 		setPassword(newPassword);
 	};
@@ -56,16 +75,16 @@ const PasswordOptions = () => {
 				<StrengthIndicator
 					key={i}
 					strength={strength}
-					strengthLevel={i}
+					i={i}
+					strengthLevel={strengthLevel}
 					value={value}
 				/>
 			))}
 			<ButtonBase
-				disabled={value === 0 || options.length === 0}
 				sx={theme => ({
 					...theme.typography.body1,
 					py: 2.5,
-					bgcolor: value === 0 || options.length === 0 ? theme.palette.red.main : 'primary.main',
+					bgcolor: 'primary.main',
 					'&:hover': {
 						bgcolor: theme.palette.grey.dark,
 						border: `2px solid ${theme.palette.primary.main}`,

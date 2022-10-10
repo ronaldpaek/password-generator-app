@@ -1,15 +1,9 @@
 import { Stack, Typography, Slider, FormGroup } from '@mui/material';
 
+import { labels } from '../constants';
 import { CheckboxLabel } from './';
 
 const CharacterOptions = ({ value, handleChange, handleToggleOption }) => {
-	const labels = [
-		'Include Uppercase Letters',
-		'Include Lowercase Letters',
-		'Include Numbers',
-		'Include Symbols'
-	];
-
 	return (
 		<Stack spacing={2}>
 			<Stack direction='row' justifyContent='space-between' alignItems='center'>
