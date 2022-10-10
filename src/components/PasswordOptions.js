@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Stack, ButtonBase, SvgIcon } from '@mui/material';
 import { MdArrowForward } from 'react-icons/md';
 
@@ -26,18 +26,18 @@ const PasswordOptions = () => {
 		setStrengthLevel(getPasswordStrength(lowerCased, value));
 	};
 
-	const handleChange = (_, newValue) => {
+	useEffect(getStrengthLevel, [value, options]);
+
+	const handleChange = (e, newValue) => {
 		setValue(newValue);
-		getStrengthLevel();
 	};
 
-	const handleToggleOption = (option, checked) => {
+	const toggleOption = (option, checked) => {
 		if (checked) {
-			setOptions(options.filter(o => o !== option));
-		} else {
 			setOptions(prevOptions => [...prevOptions, option]);
+		} else {
+			setOptions(options.filter(o => o !== option));
 		}
-		getStrengthLevel();
 	};
 
 	const handleGeneratePassword = () => {
@@ -69,7 +69,7 @@ const PasswordOptions = () => {
 			<CharacterOptions
 				value={value}
 				handleChange={handleChange}
-				handleToggleOption={handleToggleOption}
+				toggleOption={toggleOption}
 			/>
 			{strengths.map((strength, i) => (
 				<StrengthIndicator
@@ -85,9 +85,9 @@ const PasswordOptions = () => {
 					...theme.typography.body1,
 					py: 2.5,
 					bgcolor: 'primary.main',
+					border: `2px solid ${theme.palette.primary.main}`,
 					'&:hover': {
 						bgcolor: theme.palette.grey.dark,
-						border: `2px solid ${theme.palette.primary.main}`,
 						color: 'primary.main'
 					},
 					[theme.breakpoints.down('tablet')]: {

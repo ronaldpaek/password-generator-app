@@ -1,20 +1,17 @@
 import { useState } from 'react';
 import { FormControlLabel, Checkbox } from '@mui/material';
 
-const CheckboxLabel = ({ label, handleToggleOption }) => {
+const CheckboxLabel = ({ label, toggleOption }) => {
 	const [checked, setChecked] = useState(false);
+
+	const handleChange = e => {
+		setChecked(e.target.checked);
+		toggleOption(label.split(' ')[1], e.target.checked);
+	};
 
 	return (
 		<FormControlLabel
-			control={
-				<Checkbox
-					checked={checked}
-					onChange={() => {
-						setChecked(checked => !checked);
-						handleToggleOption(label.split(' ')[1], checked);
-					}}
-				/>
-			}
+			control={<Checkbox checked={checked} onChange={handleChange} />}
 			label={label}
 			sx={theme => ({
 				'& .MuiFormControlLabel-label': {

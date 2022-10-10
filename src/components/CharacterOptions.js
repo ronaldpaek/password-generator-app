@@ -3,7 +3,7 @@ import { Stack, Typography, Slider, FormGroup } from '@mui/material';
 import { labels } from '../constants';
 import { CheckboxLabel } from './';
 
-const CharacterOptions = ({ value, handleChange, handleToggleOption }) => {
+const CharacterOptions = ({ value, handleChange, toggleOption }) => {
 	return (
 		<Stack spacing={2}>
 			<Stack direction='row' justifyContent='space-between' alignItems='center'>
@@ -42,7 +42,7 @@ const CharacterOptions = ({ value, handleChange, handleToggleOption }) => {
 							color: theme.palette.grey.veryDark
 						}
 					},
-					'& .css-14pt78w-MuiSlider-rail': {
+					'& .MuiSlider-rail': {
 						bgcolor: theme.palette.grey.veryDark,
 						height: 8,
 						opacity: 1
@@ -51,11 +51,7 @@ const CharacterOptions = ({ value, handleChange, handleToggleOption }) => {
 			/>
 			<FormGroup>
 				{labels.map((label, i) => (
-					<CheckboxLabel
-						key={i}
-						label={label}
-						handleToggleOption={handleToggleOption}
-					/>
+					<CheckboxLabel key={i} label={label} toggleOption={toggleOption} />
 				))}
 			</FormGroup>
 		</Stack>
