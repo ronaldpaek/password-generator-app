@@ -9,7 +9,6 @@ const Bar = ({ strengthLevel, i }) => {
 		theme.palette.yellow.main,
 		theme.palette.primary.main
 	];
-	console.log(strengthLevel, i);
 
 	return (
 		<Box
