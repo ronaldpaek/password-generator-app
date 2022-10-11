@@ -70,6 +70,9 @@ const Password = () => {
 							display: clicked ? 'block' : 'none',
 							[theme.breakpoints.down('tablet')]: {
 								...theme.typography.body2
+							},
+							'@media (max-width: 425px)': {
+								mr: 0
 							}
 						})}
 					>
@@ -83,6 +86,9 @@ const Password = () => {
 							'&:hover': {
 								color: theme.palette.white.main,
 								cursor: 'pointer'
+							},
+							'@media (max-width: 425px)': {
+								display: clicked ? 'none' : 'block'
 							}
 						})}
 						onClick={() => copyPassword(setClicked)}
