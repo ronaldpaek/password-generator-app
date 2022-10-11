@@ -73,7 +73,8 @@ const Password = () => {
 							},
 							'@media (max-width: 425px)': {
 								mr: 0,
-								lineHeight: '44.5px',
+								lineHeight: '36px',
+								fontSize: '12px'
 							}
 						})}
 					>
@@ -83,18 +84,23 @@ const Password = () => {
 						sx={theme => ({
 							mr: -1,
 							color: 'primary.main',
-							fontSize: { mobile: 20, tablet: 24 },
+
 							'&:hover': {
 								color: theme.palette.white.main,
 								cursor: 'pointer'
 							},
 							'@media (max-width: 425px)': {
-								display: clicked ? 'none' : 'block'
+								display: clicked ? 'none' : 'inline-flex'
 							}
 						})}
 						onClick={() => copyPassword(setClicked)}
 					>
-						<SvgIcon component={MdOutlineFileCopy} />
+						<SvgIcon
+							component={MdOutlineFileCopy}
+							sx={{
+								fontSize: { mobile: 20, tablet: 24 }
+							}}
+						/>
 					</IconButton>
 				</Stack>
 			</Stack>
