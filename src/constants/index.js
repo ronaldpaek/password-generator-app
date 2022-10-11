@@ -81,7 +81,6 @@ export const generateRandomNumber = size => {
 };
 
 export const getPasswordStrength = (categories, characters) => {
-	console.log(categories)
 	const choices = categories.length;
 	const isLowerCase = categories.includes('Lowercase');
 	const isUpperCase = categories.includes('Uppercase');
@@ -112,6 +111,6 @@ const calculateLevel = (characters, vals) => {
 export const convertString = str => {
 	if (str === 'Uppercase') return 'upperCase';
 	if (str === 'Lowercase') return 'lowerCase';
-	
+
 	return str.toLowerCase();
 };
