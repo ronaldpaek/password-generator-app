@@ -1,4 +1,4 @@
-import { Stack, Typography, Slider, FormGroup, capitalize } from '@mui/material';
+import { Stack, Typography, Slider, FormGroup } from '@mui/material';
 
 import { labels } from '../constants';
 import { CheckboxLabel } from './';
