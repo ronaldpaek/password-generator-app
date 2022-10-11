@@ -72,7 +72,8 @@ const Password = () => {
 								...theme.typography.body2
 							},
 							'@media (max-width: 425px)': {
-								mr: 0
+								mr: 0,
+								lineHeight: '44.5px',
 							}
 						})}
 					>
