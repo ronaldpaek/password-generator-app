@@ -104,5 +104,6 @@ const calculateLevel = (characters, vals) => {
 	if (characters < vals[0]) return 1;
 	if (characters < vals[1]) return 2;
 	if (vals[2] === undefined || characters < vals[2]) return 3;
+
 	return 4;
 };
