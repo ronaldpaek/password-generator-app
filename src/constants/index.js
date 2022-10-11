@@ -87,27 +87,22 @@ export const getPasswordStrength = (categories, characters) => {
 
 	if (choices === 4 || choices === 3) {
 		return calculateLevel(characters, [6, 9, 11]);
-	} else if (choices === 2) {
+	}
+	if (choices === 2) {
 		if (isUpperCase && isLowerCase) {
 			return calculateLevel(characters, [7, 10, 12]);
-		} else if (isUpperCase || isLowerCase) {
+		}
+		if (isUpperCase || isLowerCase) {
 			return calculateLevel(characters, [8, 11, 14]);
 		}
-	} else {
-		return calculateLevel(characters, [11, 16]);
 	}
+
+	return calculateLevel(characters, [11, 16]);
 };
 
 const calculateLevel = (characters, vals) => {
-	if (characters < vals[0]) {
-		return 1;
-	}
-	if (characters < vals[1]) {
-		return 2;
-	}
-	if (characters < (vals[2] === undefined ? true : vals[2])) {
-		return 3;
-	} else {
-		return 4;
-	}
+	if (characters < vals[0]) return 1;
+	if (characters < vals[1]) return 2;
+	if (vals[2] === undefined || characters < vals[2]) return 3;
+	return 4;
 };
