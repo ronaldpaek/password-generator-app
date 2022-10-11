@@ -25,13 +25,14 @@ const Password = () => {
 				color='grey.main'
 				mb={4}
 				sx={theme => ({
+					textTransform: 'capitalize',
 					[theme.breakpoints.down('tablet')]: {
 						...theme.typography.body2,
 						mb: 2
 					}
 				})}
 			>
-				Password Generator
+				Password generator
 			</Typography>
 			<Stack
 				direction='row'
@@ -65,13 +66,14 @@ const Password = () => {
 						color='primary.main'
 						mr={1}
 						sx={theme => ({
+							textTransform: 'uppercase',
 							display: clicked ? 'block' : 'none',
 							[theme.breakpoints.down('tablet')]: {
 								...theme.typography.body2
 							}
 						})}
 					>
-						COPIED
+						Copied
 					</Typography>
 					<IconButton
 						sx={theme => ({

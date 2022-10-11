@@ -1,4 +1,4 @@
-const uppercase = [
+const upperCase = [
 	'A',
 	'B',
 	'C',
@@ -27,7 +27,7 @@ const uppercase = [
 	'Z'
 ];
 
-const lowercase = [
+const lowerCase = [
 	'a',
 	'b',
 	'c',
@@ -61,17 +61,17 @@ const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const symbols = ['!', '@', '#', '$', '%', '^', '&', '*'];
 
 export const characters = {
-	uppercase,
-	lowercase,
+	upperCase,
+	lowerCase,
 	numbers,
 	symbols
 };
 
 export const labels = [
-	'Include Uppercase Letters',
-	'Include Lowercase Letters',
-	'Include Numbers',
-	'Include Symbols'
+	'Uppercase letters',
+	'Lowercase letters',
+	'Numbers',
+	'Symbols'
 ];
 
 export const strengths = ['', 'TOO WEAK!', 'WEAK', 'MEDIUM', 'STRONG'];
@@ -81,9 +81,10 @@ export const generateRandomNumber = size => {
 };
 
 export const getPasswordStrength = (categories, characters) => {
+	console.log(categories)
 	const choices = categories.length;
-	const isLowerCase = categories.includes('lowercase');
-	const isUpperCase = categories.includes('uppercase');
+	const isLowerCase = categories.includes('Lowercase');
+	const isUpperCase = categories.includes('Uppercase');
 
 	if (choices === 4 || choices === 3) {
 		return calculateLevel(characters, [6, 9, 11]);
@@ -106,4 +107,11 @@ const calculateLevel = (characters, vals) => {
 	if (vals[2] === undefined || characters < vals[2]) return 3;
 
 	return 4;
+};
+
+export const convertString = str => {
+	if (str === 'Uppercase') return 'upperCase';
+	if (str === 'Lowercase') return 'lowerCase';
+	
+	return str.toLowerCase();
 };

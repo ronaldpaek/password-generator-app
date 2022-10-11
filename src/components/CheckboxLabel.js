@@ -6,13 +6,13 @@ const CheckboxLabel = ({ label, toggleOption }) => {
 
 	const handleCheckboxChange = e => {
 		setChecked(e.target.checked);
-		toggleOption(label.split(' ')[1], e.target.checked);
+		toggleOption(label.split(' ')[0], e.target.checked);
 	};
 
 	return (
 		<FormControlLabel
 			control={<Checkbox checked={checked} onChange={handleCheckboxChange} />}
-			label={label}
+			label={`Include ${label}`}
 			sx={theme => ({
 				'& .MuiTypography-root': {
 					color: theme.palette.white.main,

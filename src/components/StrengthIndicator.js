@@ -20,12 +20,13 @@ const StrengthIndicator = ({ strength, strengthLevel, i }) => {
 				variant='body1'
 				sx={theme => ({
 					color: theme.palette.grey.main,
+					textTransform: 'uppercase',
 					[theme.breakpoints.down('tablet')]: {
 						...theme.typography.body2
 					}
 				})}
 			>
-				STRENGTH
+				Strength
 			</Typography>
 			<Stack direction='row'>
 				<Typography

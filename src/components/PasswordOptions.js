@@ -7,7 +7,8 @@ import {
 	characters,
 	generateRandomNumber,
 	strengths,
-	getPasswordStrength
+	getPasswordStrength,
+	convertString
 } from '../constants';
 import { usePasswordContext } from '../contexts/PasswordContextProvider';
 
@@ -23,8 +24,7 @@ const PasswordOptions = () => {
 			return;
 		}
 
-		const lowerCased = options.map(option => option.toLowerCase());
-		setStrengthLevel(getPasswordStrength(lowerCased, value));
+		setStrengthLevel(getPasswordStrength(options, value));
 	};
 
 	useEffect(getStrengthLevel, [value, options]);
@@ -46,7 +46,7 @@ const PasswordOptions = () => {
 		let newPassword = '';
 		for (let i = 0; i < value; i++) {
 			let randomIdx = generateRandomNumber(options.length);
-			const key = options[randomIdx].toLowerCase();
+			const key = convertString(options[randomIdx]);
 			randomIdx = generateRandomNumber(characters[key].length);
 			newPassword += characters[key][randomIdx];
 		}

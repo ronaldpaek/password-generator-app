@@ -1,4 +1,4 @@
-import { Stack, Typography, Slider, FormGroup } from '@mui/material';
+import { Stack, Typography, Slider, FormGroup, capitalize } from '@mui/material';
 
 import { labels } from '../constants';
 import { CheckboxLabel } from './';
@@ -11,12 +11,13 @@ const CharacterOptions = ({ value, handleValueChange, toggleOption }) => {
 					variant='body1'
 					sx={theme => ({
 						color: theme.palette.white.main,
+						textTransform: 'capitalize',
 						[theme.breakpoints.down('tablet')]: {
 							...theme.typography.body2
 						}
 					})}
 				>
-					Character Length
+					Character length
 				</Typography>
 				<Typography
 					variant='h1'
