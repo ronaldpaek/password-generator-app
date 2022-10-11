@@ -22,15 +22,12 @@ const PasswordOptions = () => {
 			setStrengthLevel(0);
 			return;
 		}
+
 		const lowerCased = options.map(option => option.toLowerCase());
 		setStrengthLevel(getPasswordStrength(lowerCased, value));
 	};
 
 	useEffect(getStrengthLevel, [value, options]);
-
-	const handleChange = (e, newValue) => {
-		setValue(newValue);
-	};
 
 	const toggleOption = (option, checked) => {
 		if (checked) {
@@ -68,7 +65,7 @@ const PasswordOptions = () => {
 		>
 			<CharacterOptions
 				value={value}
-				handleChange={handleChange}
+				handleValueChange={setValue}
 				toggleOption={toggleOption}
 			/>
 			{strengths.map((strength, i) => (

@@ -81,71 +81,33 @@ export const generateRandomNumber = size => {
 };
 
 export const getPasswordStrength = (categories, characters) => {
-	if (
-		categories.includes('numbers') &&
-		categories.includes('symbols') &&
-		categories.includes('lowercase') &&
-		categories.includes('uppercase')
-	) {
-		if (characters < 6) {
-			return 1;
-		} else if (characters < 9) {
-			return 2;
-		} else if (characters < 11) {
-			return 3;
-		} else {
-			return 4;
+	const choices = categories.length;
+	const isLowerCase = categories.includes('lowercase');
+	const isUpperCase = categories.includes('uppercase');
+
+	if (choices === 4 || choices === 3) {
+		return calculateLevel(characters, [6, 9, 11]);
+	} else if (choices === 2) {
+		if (isUpperCase && isLowerCase) {
+			return calculateLevel(characters, [7, 10, 12]);
+		} else if (isUpperCase || isLowerCase) {
+			return calculateLevel(characters, [8, 11, 14]);
 		}
-	} else if (
-		(categories.includes('numbers') &&
-			categories.includes('lowercase') &&
-			categories.includes('uppercase')) ||
-		(categories.includes('symbols') &&
-			categories.includes('lowercase') &&
-			categories.includes('uppercase'))
-	) {
-		if (characters < 6) {
-			return 1;
-		} else if (characters < 9) {
-			return 2;
-		} else if (characters < 11) {
-			return 3;
-		} else {
-			return 4;
-		}
-	} else if (
-		categories.includes('lowercase') &&
-		categories.includes('uppercase')
-	) {
-		if (characters < 7) {
-			return 1;
-		} else if (characters < 10) {
-			return 2;
-		} else if (characters < 12) {
-			return 3;
-		} else {
-			return 4;
-		}
-	} else if (
-		categories.includes('lowercase') ||
-		categories.includes('uppercase')
-		) {
-		if (characters < 8) {
-			return 1;
-		} else if (characters < 11) {
-			return 2;
-		} else if (characters < 14) {
-			return 3;
-		} else {
-			return 4;
-		}
-	} else if (categories.includes('numbers') || categories.includes('symbols')) {
-		if (characters < 11) {
-			return 1;
-		} else if (characters < 16) {
-			return 2;
-		} else {
-			return 3;
-		}
+	} else {
+		return calculateLevel(characters, [11, 16]);
+	}
+};
+
+const calculateLevel = (characters, vals) => {
+	if (characters < vals[0]) {
+		return 1;
+	}
+	if (characters < vals[1]) {
+		return 2;
+	}
+	if (characters < (vals[2] === undefined ? true : vals[2])) {
+		return 3;
+	} else {
+		return 4;
 	}
 };

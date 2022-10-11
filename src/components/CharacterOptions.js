@@ -3,7 +3,7 @@ import { Stack, Typography, Slider, FormGroup } from '@mui/material';
 import { labels } from '../constants';
 import { CheckboxLabel } from './';
 
-const CharacterOptions = ({ value, handleChange, toggleOption }) => {
+const CharacterOptions = ({ value, handleValueChange, toggleOption }) => {
 	return (
 		<Stack spacing={2}>
 			<Stack direction='row' justifyContent='space-between' alignItems='center'>
@@ -34,7 +34,7 @@ const CharacterOptions = ({ value, handleChange, toggleOption }) => {
 				value={value}
 				min={0}
 				max={18}
-				onChange={handleChange}
+				onChange={(e, newValue) => handleValueChange(newValue)}
 				sx={theme => ({
 					'& .MuiSlider-thumb': {
 						color: theme.palette.white.main,

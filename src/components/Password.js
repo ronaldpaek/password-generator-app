@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { usePasswordContext } from '../contexts/PasswordContextProvider';
 import { Stack, Typography, SvgIcon, IconButton } from '@mui/material';
 import { MdOutlineFileCopy } from 'react-icons/md';
+
+import { usePasswordContext } from '../contexts/PasswordContextProvider';
 
 const Password = () => {
 	const { password } = usePasswordContext();
 	const [clicked, setClicked] = useState(false);
 
-	const handleClick = setClicked => {
+	const copyPassword = setClicked => {
 		navigator.clipboard.writeText(password);
 		setClicked(clicked => !clicked);
 		setTimeout(() => {
@@ -82,7 +83,7 @@ const Password = () => {
 								cursor: 'pointer'
 							}
 						})}
-						onClick={() => handleClick(setClicked)}
+						onClick={() => copyPassword(setClicked)}
 					>
 						<SvgIcon component={MdOutlineFileCopy} />
 					</IconButton>

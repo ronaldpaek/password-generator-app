@@ -4,17 +4,17 @@ import { FormControlLabel, Checkbox } from '@mui/material';
 const CheckboxLabel = ({ label, toggleOption }) => {
 	const [checked, setChecked] = useState(false);
 
-	const handleChange = e => {
+	const handleCheckboxChange = e => {
 		setChecked(e.target.checked);
 		toggleOption(label.split(' ')[1], e.target.checked);
 	};
 
 	return (
 		<FormControlLabel
-			control={<Checkbox checked={checked} onChange={handleChange} />}
+			control={<Checkbox checked={checked} onChange={handleCheckboxChange} />}
 			label={label}
 			sx={theme => ({
-				'& .MuiFormControlLabel-label': {
+				'& .MuiTypography-root': {
 					color: theme.palette.white.main,
 					...theme.typography.body1,
 					[theme.breakpoints.down('tablet')]: {

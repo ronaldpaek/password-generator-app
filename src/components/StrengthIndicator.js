@@ -2,7 +2,7 @@ import { Stack, Typography } from '@mui/material';
 
 import { Bar } from './';
 
-const StrengthIndicator = ({ strength, strengthLevel , i }) => {
+const StrengthIndicator = ({ strength, strengthLevel, i }) => {
 	return (
 		<Stack
 			direction='row'
@@ -41,7 +41,7 @@ const StrengthIndicator = ({ strength, strengthLevel , i }) => {
 					{strength}
 				</Typography>
 				<Stack direction='row' spacing={1}>
-					{Array.from({ length: 4 }).map((_, i) => (
+					{Array.from({ length: 4 }).map((e, i) => (
 						<Bar key={i} strengthLevel={strengthLevel} i={i} />
 					))}
 				</Stack>
